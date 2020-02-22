@@ -25,6 +25,10 @@ fn main() {
         }
     }
 
+    // Insert features we want here, who needs ABI compatibility ;)
+    features.insert("avx".to_string());
+    features.insert("sse2".to_string());
+
     let static_linking = env::var("CARGO_FEATURE_STATIC").is_ok();
 
     let dst = cmake::Config::new("sleef")
