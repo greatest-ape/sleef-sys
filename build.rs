@@ -35,6 +35,8 @@ fn main() {
         .very_verbose(true)
         // no DFT libraries (should be behind a feature flag):
         .define("BUILD_DFT", "FALSE")
+        .define("DISABLE_FLOAT128", "TRUE")
+        .define("DISABLE_LONG_DOUBLE", "TRUE")
         // no tests (should build and run the tests behind a feature flag):
         .define("BUILD_TESTS", "FALSE")
         .define("BUILD_SHARED_LIBS", flag_str(!static_linking))
