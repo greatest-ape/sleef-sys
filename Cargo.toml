@@ -33,8 +33,8 @@ cfg-if = "^0.1"
 
 [build-dependencies]
 cmake = "^0.1"
-bindgen = "^0.51"
-env_logger = "0.6"
+bindgen = { version = "^0.54", default-features = false, features = ["logging", "runtime", "which-rustfmt"] }
+env_logger = "0.7"
 
 [features]
 default = []
