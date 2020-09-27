@@ -28,7 +28,7 @@ cfg_if! {
 
         pub use self::x86::{
             // MMX:
-            __m64,
+            // __m64,
             // SSE:
             __m128, __m128i, __m128d,
             // AVX:
