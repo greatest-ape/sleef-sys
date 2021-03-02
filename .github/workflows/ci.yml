@@ -1,3 +1,19 @@
+# CI
+# 
+# Doesn't build on Windows due to libclang.dll not being found.
+#
+# Interesting links:
+# - https://github.com/rust-lang/rust-bindgen/issues/1797
+# - https://github.com/KyleMayes/clang-sys#environment-variables
+# - https://stackoverflow.com/a/51312174
+# - https://stackoverflow.com/questions/59316239/what-is-the-official-way-to-access-the-visual-studio-2019-version-of-clang-from
+# 
+# Sketch for possible workaround:
+# (new-object System.Net.WebClient).DownloadFile('https://ziglang.org/deps/llvm%2bclang%2blld-10.0.0-x86_64-windows-msvc-release-mt.tar.xz','D:\llvm.tar.xz’)
+# TODO: unpack archive, extract file
+# $env:LIBCLANG_PATH = "D:\libclang.dll"
+# 
+
 name: CI
 
 on: [push, pull_request]
@@ -7,11 +23,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, macOS-latest]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install dependencies
+    - name: Install dependencies (Linux)
       run: |
         sudo apt update
         sudo apt install cmake git
