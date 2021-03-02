@@ -64,6 +64,9 @@ fn main() {
         .header(sleef_header.to_str().expect("failed to convert header path to string"))
     // Rust does not support 80-bit precision floats:
         .opaque_type("Sleef_longdouble2")
+    // Blacklist functions using __m64 (otherwise, build fails on Windows)
+        .blacklist_function("_m_from_float")
+        .blacklist_function("_m_to_float")
     // The bindings should be no_std:
         .use_core()
     // The bindings should use the ctypes from libc, not std::os::raw:
