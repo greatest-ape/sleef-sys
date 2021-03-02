@@ -29,12 +29,12 @@ bench = false
 
 [dependencies]
 libc = { version = "0.2", default-features = false }
-cfg-if = "^0.1"
+cfg-if = "1"
 
 [build-dependencies]
 cmake = "^0.1"
-bindgen = { version = "^0.54", default-features = false, features = ["logging", "runtime", "which-rustfmt"] }
-env_logger = "0.7"
+bindgen = { version = "0.57", default-features = false, features = ["logging", "runtime", "which-rustfmt"] }
+env_logger = "0.8"
 
 [features]
 default = []
