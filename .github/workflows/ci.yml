@@ -1,0 +1,29 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install cmake git
+      if: contains(matrix.os, 'ubuntu')
+    - name: Download sleef-sys
+      run: git submodule update --init
+    - name: Install rust nightly
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: nightly
+        override: true
+    - name: Build
+      run: cargo +nightly build --release --features "static" --verbose
+    - name: Run tests
+      run: cargo +nightly test --release --features "static" --verbose
