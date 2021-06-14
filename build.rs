@@ -37,6 +37,8 @@ fn main() {
         .define("BUILD_DFT", "FALSE")
         .define("DISABLE_FLOAT128", "TRUE")
         .define("DISABLE_LONG_DOUBLE", "TRUE")
+        // Disable AVX512: not used in OctaSine and causes build issues
+        .define("DISABLE_AVX512F", "TRUE")
         // no tests (should build and run the tests behind a feature flag):
         .define("BUILD_TESTS", "FALSE")
         .define("BUILD_SHARED_LIBS", flag_str(!static_linking))
